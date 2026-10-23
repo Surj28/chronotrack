@@ -30,8 +30,8 @@ appearance and vessel cues then decide between competing candidates through
 the assignment, never refuse on their own. A refusal rule that depends on the
 current links would tighten round after round (each round cuts the longest
 links, which then no longer inform the next calibration); a z-gate on the
-fitted motion scale did exactly that on dense, mostly stationary data (Song
-S5: scale 0.81 -> 0.57 px over the rounds, moving cells cut off). Tracks may be
+fitted motion scale did exactly that on dense, mostly stationary data
+(scale 0.81 -> 0.57 px over the rounds, moving cells cut off). Tracks may be
 missed for max_gap frames. New tracks may start anywhere.
 
 Self-calibration (no labels): every parameter is re-estimated from the links
@@ -54,7 +54,6 @@ import numpy as np
 import pandas as pd
 from scipy import ndimage as ndi
 from scipy.sparse import coo_matrix
-from scipy.sparse.csgraph import min_weight_full_bipartite_matching
 from scipy.spatial import cKDTree
 
 CUES = ("persistence", "state", "anisotropy", "size", "bright", "wall")
@@ -449,7 +448,8 @@ def run(frames: list[FrameDets], gate: dict, cues=CUES, max_gap: int = 1, max_ro
         cal = new
         tracks = track(frames, cal, gate["max_dist_px"], max_gap)
         if verbose:
-            L = tracks.groupby("track_id").size()
+            fr = tracks.groupby("track_id").frame_idx
+            L = fr.max() - fr.min()                    # track length: frames from first to last detection
             print(f"  round {rnd}: change {change:.3f} | tracks {len(L)}, mean length {L.mean():.2f} | "
                   + json.dumps({k: round(v, 3) for k, v in asdict(cal).items()
                                 if isinstance(v, float) and np.isfinite(v)}), flush=True)

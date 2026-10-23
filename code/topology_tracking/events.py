@@ -6,8 +6,8 @@ Entities and events
               non-overlapping frames), vessel entry (k non-overlapping ->
               overlapping), each with the vessel state and scaffold segment
               where it happens
-    vessels   segment regression and emergence (vessel_scaffold.py classes
-              with red-signal support), with their change time
+    vessels   segment regression and emergence (the scaffold segments' classes,
+              with vessel-signal support), with their change time
 The event list is turned into one row of chip-level features (rates per 100
 cell-hours, so that removing tracks does not change them trivially; on-vessel
 enrichment of events over chance; state occupancy; speeds; vessel remodelling;
@@ -83,7 +83,7 @@ def cell_events(tracks: pd.DataFrame, n_frames: int, k: int, territory: np.ndarr
     ev = pd.DataFrame(rows, columns=["track_id", "frame_idx", "type", "on_vessel", "r", "c"])
     ev["segment"] = -1
     if territory is not None and len(ev):
-        pts = ev[["r", "c"]].to_numpy(float)
+        pts = ev[["r", "c"]].to_numpy(float, copy=True)
         if to_reference is not None:
             for fr, idx in ev.groupby("frame_idx").indices.items():
                 pts[idx] = to_reference(pts[idx], int(fr))

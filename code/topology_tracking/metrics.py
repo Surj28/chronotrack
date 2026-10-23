@@ -5,7 +5,7 @@ every frame (CTC "TRA" convention). Prediction: one label map per frame plus,
 per frame, a {label: track_id} map from the tracker's output.
 
 Matching per frame, one-to-one (Hungarian):
-    mode="iou"     IoU >= 0.5 (our annotated crops: full masks)
+    mode="iou"     IoU >= 0.5 (annotations with full masks)
     mode="marker"  prediction covers > 50% of the ground-truth object (CTC
                    tracking ground truth is markers, not full masks)
 

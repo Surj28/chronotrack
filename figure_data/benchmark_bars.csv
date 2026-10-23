@@ -2,10 +2,10 @@ metric,density,motion,tracker,in_figure,median,n_sequences,p_holm_vs_chronotrack
 f1,1x,gentle,ChronoTrack,True,0.9753642969280023,12,,,
 f1,1x,gentle,+vessel,False,0.9750276095047885,12,0.0078125,ablation,True
 f1,1x,gentle,Frame-by-frame,False,0.9742300695226636,12,0.01953125,ablation,True
-f1,1x,gentle,Kalman,False,0.9573687425928263,12,0.0078125,ablation,True
+f1,1x,gentle,Kalman,False,0.9573687425928264,12,0.0078125,ablation,True
 f1,1x,gentle,Nearest neighbor,False,0.9460180856352445,12,0.0078125,ablation,True
 f1,1x,gentle,btrack,True,0.9602158885874545,12,0.005859375,published,True
-f1,1x,gentle,LapTrack,True,0.9475890659960641,12,0.005859375,published,True
+f1,1x,gentle,LapTrack,True,0.9475890659960642,12,0.005859375,published,True
 f1,1x,gentle,Trackastra,True,0.9505363520758277,12,0.005859375,published,True
 f1,1x,ambiguous,ChronoTrack,True,0.9311826964016987,12,,,
 f1,1x,ambiguous,+vessel,False,0.9304927626837884,12,0.01220703125,ablation,True
@@ -16,7 +16,7 @@ f1,1x,ambiguous,btrack,True,0.8395858664672133,12,0.005859375,published,True
 f1,1x,ambiguous,LapTrack,True,0.8192434059986988,12,0.005859375,published,True
 f1,1x,ambiguous,Trackastra,True,0.9183457803954769,12,0.005859375,published,True
 f1,2x,gentle,ChronoTrack,True,0.9376561570557882,12,,,
-f1,2x,gentle,+vessel,False,0.938608715426293,12,0.04833984375,ablation,False
+f1,2x,gentle,+vessel,False,0.9386087154262931,12,0.04833984375,ablation,False
 f1,2x,gentle,Frame-by-frame,False,0.934967316553228,12,0.0078125,ablation,True
 f1,2x,gentle,Kalman,False,0.8536035237217154,12,0.0078125,ablation,True
 f1,2x,gentle,Nearest neighbor,False,0.9159210133040496,12,0.0078125,ablation,True
@@ -35,63 +35,63 @@ complete,1x,gentle,ChronoTrack,True,0.5730401229123031,12,,,
 complete,1x,gentle,+vessel,False,0.5615995991308325,12,0.0078125,ablation,True
 complete,1x,gentle,Frame-by-frame,False,0.5639649195426089,12,0.38818359375,ablation,True
 complete,1x,gentle,Kalman,False,0.44682104885915663,12,0.0078125,ablation,True
-complete,1x,gentle,Nearest neighbor,False,0.22172697732940336,12,0.0078125,ablation,True
+complete,1x,gentle,Nearest neighbor,False,0.22172697732940339,12,0.0078125,ablation,True
 complete,1x,gentle,btrack,True,0.4446140490293231,12,0.005859375,published,True
 complete,1x,gentle,LapTrack,True,0.34713549315319225,12,0.005859375,published,True
-complete,1x,gentle,Trackastra,True,0.23994084268984664,12,0.005859375,published,True
+complete,1x,gentle,Trackastra,True,0.23994084268984667,12,0.005859375,published,True
 complete,1x,ambiguous,ChronoTrack,True,0.260778529075805,12,,,
 complete,1x,ambiguous,+vessel,False,0.2532170857245175,12,0.0146484375,ablation,True
-complete,1x,ambiguous,Frame-by-frame,False,0.2616757577324109,12,0.38818359375,ablation,False
-complete,1x,ambiguous,Kalman,False,0.049207508719844154,12,0.0078125,ablation,True
-complete,1x,ambiguous,Nearest neighbor,False,0.0852970545362576,12,0.0078125,ablation,True
-complete,1x,ambiguous,btrack,True,0.06804124029711325,12,0.005859375,published,True
-complete,1x,ambiguous,LapTrack,True,0.05345757128906195,12,0.005859375,published,True
+complete,1x,ambiguous,Frame-by-frame,False,0.26167575773241103,12,0.38818359375,ablation,False
+complete,1x,ambiguous,Kalman,False,0.049207508719844195,12,0.0078125,ablation,True
+complete,1x,ambiguous,Nearest neighbor,False,0.08529705453625763,12,0.0078125,ablation,True
+complete,1x,ambiguous,btrack,True,0.06804124029711334,12,0.005859375,published,True
+complete,1x,ambiguous,LapTrack,True,0.053457571289062034,12,0.005859375,published,True
 complete,1x,ambiguous,Trackastra,True,0.1358232225500685,12,0.005859375,published,True
 complete,2x,gentle,ChronoTrack,True,0.2966039403784976,12,,,
-complete,2x,gentle,+vessel,False,0.29305275231669237,12,0.38818359375,ablation,True
+complete,2x,gentle,+vessel,False,0.2930527523166924,12,0.38818359375,ablation,True
 complete,2x,gentle,Frame-by-frame,False,0.2956607732842411,12,0.06103515625,ablation,True
 complete,2x,gentle,Kalman,False,0.14028962847144666,12,0.0078125,ablation,True
-complete,2x,gentle,Nearest neighbor,False,0.11919253150216455,12,0.0078125,ablation,True
-complete,2x,gentle,btrack,True,0.25606760139788853,12,0.005859375,published,True
-complete,2x,gentle,LapTrack,True,0.10079517534062984,12,0.005859375,published,True
-complete,2x,gentle,Trackastra,True,0.12739980005811763,12,0.005859375,published,True
-complete,2x,ambiguous,ChronoTrack,True,0.09275981717287105,12,,,
-complete,2x,ambiguous,+vessel,False,0.08919347064312419,12,0.30859375,ablation,True
-complete,2x,ambiguous,Frame-by-frame,False,0.09421736811652355,12,0.013671875,ablation,False
-complete,2x,ambiguous,Kalman,False,0.007083037475712151,12,0.0078125,ablation,True
-complete,2x,ambiguous,Nearest neighbor,False,0.0400003786741248,12,0.0078125,ablation,True
-complete,2x,ambiguous,btrack,True,0.02429800974286615,12,0.005859375,published,True
-complete,2x,ambiguous,LapTrack,True,0.012504113533608752,12,0.005859375,published,True
-complete,2x,ambiguous,Trackastra,True,0.0537326472656139,12,0.04248046875,published,True
-feature_error,1x,gentle,ChronoTrack,True,0.0301999213622478,12,,,
-feature_error,1x,gentle,+vessel,False,0.03283390043674615,12,0.9228515625,ablation,True
-feature_error,1x,gentle,Frame-by-frame,False,0.030678849192998098,12,1.0,ablation,True
-feature_error,1x,gentle,Kalman,False,0.0585910482661519,12,0.29541015625,ablation,True
-feature_error,1x,gentle,Nearest neighbor,False,0.0804247973928919,12,0.0078125,ablation,True
-feature_error,1x,gentle,btrack,True,0.0899076449414004,12,0.005859375,published,True
-feature_error,1x,gentle,LapTrack,True,0.032774709944636646,12,0.255859375,published,True
-feature_error,1x,gentle,Trackastra,True,0.06527108178736235,12,0.0087890625,published,True
-feature_error,1x,ambiguous,ChronoTrack,True,0.0836083336665482,12,,,
-feature_error,1x,ambiguous,+vessel,False,0.0698398455980126,12,1.0,ablation,False
-feature_error,1x,ambiguous,Frame-by-frame,False,0.08389016265569575,12,1.0,ablation,True
-feature_error,1x,ambiguous,Kalman,False,0.2191275099805965,12,0.0078125,ablation,True
-feature_error,1x,ambiguous,Nearest neighbor,False,0.0704743400279122,12,1.0,ablation,False
-feature_error,1x,ambiguous,btrack,True,0.07858203814591486,12,0.5322265625,published,True
-feature_error,1x,ambiguous,LapTrack,True,0.12791108703632392,12,0.0068359375,published,True
-feature_error,1x,ambiguous,Trackastra,True,0.10301916351446094,12,0.38818359375,published,True
-feature_error,2x,gentle,ChronoTrack,True,0.0403572791536237,12,,,
-feature_error,2x,gentle,+vessel,False,0.049510282614728,12,1.0,ablation,True
-feature_error,2x,gentle,Frame-by-frame,False,0.04615588013797675,12,0.251953125,ablation,True
-feature_error,2x,gentle,Kalman,False,0.09305702928449786,12,0.0078125,ablation,True
-feature_error,2x,gentle,Nearest neighbor,False,0.048124018705739,12,1.0,ablation,True
-feature_error,2x,gentle,btrack,True,0.09196876365281556,12,0.005859375,published,True
+complete,2x,gentle,Nearest neighbor,False,0.1191925315021646,12,0.0078125,ablation,True
+complete,2x,gentle,btrack,True,0.2560676013978886,12,0.005859375,published,True
+complete,2x,gentle,LapTrack,True,0.10079517534062989,12,0.005859375,published,True
+complete,2x,gentle,Trackastra,True,0.12739980005811768,12,0.005859375,published,True
+complete,2x,ambiguous,ChronoTrack,True,0.09275981717287109,12,,,
+complete,2x,ambiguous,+vessel,False,0.08919347064312422,12,0.30859375,ablation,True
+complete,2x,ambiguous,Frame-by-frame,False,0.09421736811652356,12,0.013671875,ablation,False
+complete,2x,ambiguous,Kalman,False,0.007083037475712204,12,0.0078125,ablation,True
+complete,2x,ambiguous,Nearest neighbor,False,0.040000378674124835,12,0.0078125,ablation,True
+complete,2x,ambiguous,btrack,True,0.024298009742866233,12,0.005859375,published,True
+complete,2x,ambiguous,LapTrack,True,0.01250411353360881,12,0.005859375,published,True
+complete,2x,ambiguous,Trackastra,True,0.053732647265613935,12,0.04248046875,published,True
+feature_error,1x,gentle,ChronoTrack,True,0.030199921362247854,12,,,
+feature_error,1x,gentle,+vessel,False,0.032833900436746194,12,0.9228515625,ablation,True
+feature_error,1x,gentle,Frame-by-frame,False,0.030678849192998132,12,1.0,ablation,True
+feature_error,1x,gentle,Kalman,False,0.05859104826615194,12,0.29541015625,ablation,True
+feature_error,1x,gentle,Nearest neighbor,False,0.08042479739289198,12,0.0078125,ablation,True
+feature_error,1x,gentle,btrack,True,0.08990764494140044,12,0.005859375,published,True
+feature_error,1x,gentle,LapTrack,True,0.032774709944636715,12,0.255859375,published,True
+feature_error,1x,gentle,Trackastra,True,0.06527108178736238,12,0.0087890625,published,True
+feature_error,1x,ambiguous,ChronoTrack,True,0.08360833366654828,12,,,
+feature_error,1x,ambiguous,+vessel,False,0.06983984559801266,12,1.0,ablation,False
+feature_error,1x,ambiguous,Frame-by-frame,False,0.08389016265569582,12,1.0,ablation,True
+feature_error,1x,ambiguous,Kalman,False,0.21912750998059655,12,0.0078125,ablation,True
+feature_error,1x,ambiguous,Nearest neighbor,False,0.07047434002791221,12,1.0,ablation,False
+feature_error,1x,ambiguous,btrack,True,0.0785820381459149,12,0.5322265625,published,True
+feature_error,1x,ambiguous,LapTrack,True,0.12791108703632398,12,0.0068359375,published,True
+feature_error,1x,ambiguous,Trackastra,True,0.10301916351446103,12,0.38818359375,published,True
+feature_error,2x,gentle,ChronoTrack,True,0.04035727915362376,12,,,
+feature_error,2x,gentle,+vessel,False,0.04951028261472805,12,1.0,ablation,True
+feature_error,2x,gentle,Frame-by-frame,False,0.04615588013797681,12,0.251953125,ablation,True
+feature_error,2x,gentle,Kalman,False,0.09305702928449788,12,0.0078125,ablation,True
+feature_error,2x,gentle,Nearest neighbor,False,0.04812401870573907,12,1.0,ablation,True
+feature_error,2x,gentle,btrack,True,0.09196876365281559,12,0.005859375,published,True
 feature_error,2x,gentle,LapTrack,True,0.0857698852498784,12,0.005859375,published,True
-feature_error,2x,gentle,Trackastra,True,0.06721628020716836,12,0.1708984375,published,True
-feature_error,2x,ambiguous,ChronoTrack,True,0.0828658091307453,12,,,
-feature_error,2x,ambiguous,+vessel,False,0.07053484222728884,12,1.0,ablation,False
-feature_error,2x,ambiguous,Frame-by-frame,False,0.07005010506661415,12,1.0,ablation,True
-feature_error,2x,ambiguous,Kalman,False,0.29956023888574035,12,0.0078125,ablation,True
+feature_error,2x,gentle,Trackastra,True,0.06721628020716841,12,0.1708984375,published,True
+feature_error,2x,ambiguous,ChronoTrack,True,0.08286580913074534,12,,,
+feature_error,2x,ambiguous,+vessel,False,0.07053484222728891,12,1.0,ablation,False
+feature_error,2x,ambiguous,Frame-by-frame,False,0.07005010506661416,12,1.0,ablation,True
+feature_error,2x,ambiguous,Kalman,False,0.2995602388857404,12,0.0078125,ablation,True
 feature_error,2x,ambiguous,Nearest neighbor,False,0.07367168464260235,12,1.0,ablation,False
-feature_error,2x,ambiguous,btrack,True,0.1292924856230881,12,0.005859375,published,True
-feature_error,2x,ambiguous,LapTrack,True,0.1547561303915549,12,0.005859375,published,True
-feature_error,2x,ambiguous,Trackastra,True,0.08152821246156694,12,0.90966796875,published,False
+feature_error,2x,ambiguous,btrack,True,0.12929248562308818,12,0.005859375,published,True
+feature_error,2x,ambiguous,LapTrack,True,0.15475613039155495,12,0.005859375,published,True
+feature_error,2x,ambiguous,Trackastra,True,0.08152821246156697,12,0.90966796875,published,False

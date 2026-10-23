@@ -1,0 +1,25 @@
+{
+  "sequence": "seq1_density1_gentle_seed0",
+  "vessels": "vessels/seq1",
+  "density": 1,
+  "motion": "gentle",
+  "seed": 0,
+  "n_frames": 24,
+  "um_per_px": 0.65,
+  "frame_interval_h": 1.0,
+  "step_scale": 1.0,
+  "p_miss": 0.0624653483644428,
+  "death_p": 0.00958229439281225,
+  "cell_radius_px": 10.124020118074668,
+  "min_cell_distance_px": 15.548820376843485,
+  "n_detections_per_frame": 429.2916666666667,
+  "frac_missed_or_merged": 0.06684177157866135,
+  "crop": {
+    "of": "seq1_density1_gentle_seed0",
+    "origin_rc": [
+      1536,
+      1536
+    ],
+    "size": 1280
+  }
+}

@@ -1,8 +1,12 @@
 results/
-data/
+/data/*
+!/data/sample/
+!/data/README.md
 __pycache__/
 *.py[cod]
 .venv/
 *.tif
+!/data/sample/**/*.tif
 *.mp4
 *.avi
+/images/

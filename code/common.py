@@ -1,8 +1,8 @@
-"""Shared settings for the paper's experiments on ARTORG (wells 7, 8, 10, 11).
+"""Shared settings of ChronoTrack's experiments.
 
-All parameters are fixed before annotation (paper Sec. III-A): w from the
-earlier CTC work, d_max estimated from each sequence's own detections, and
-g, k, tau set once here. Nothing is tuned on the annotated crops.
+All parameters are fixed in advance (paper Sec. III-A): w from the earlier
+CTC work, d_max estimated from each sequence's own detections, and g, k, tau
+set once here. Nothing is tuned on the benchmark.
 """
 from __future__ import annotations
 
@@ -17,15 +17,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from topology_tracking.tracker import _cell_props, _load_array, build_tracks_neighbor_kf  # noqa: E402
 
-PAPER = HERE.parent
-RESULTS = PAPER / "results"
-SEG = RESULTS / "segmentation"
-CROPS = RESULTS / "roi_crops"
-TRACKING = RESULTS / "tracking"
-
-WELLS = ["ARTORG_w7", "ARTORG_w8", "ARTORG_w10", "ARTORG_w11"]
-ANNOTATED_WELL = "ARTORG_w7"
-UM_PER_PX = 0.65
+UM_PER_PX = 0.65    # pixel size (um) and frame interval (h) of the sequences
 FRAME_H = 1.0
 
 W = 0.35          # topology weight (from the earlier CTC work, not tuned here)
@@ -33,14 +25,6 @@ MAX_GAP = 1       # g: frames a track may be missed before it ends
 K_EXIT = 2        # k: non-overlapping frames needed to call a vessel exit
 TAU = 0.10        # reliability tolerance, in IQR units
 SEED = 0
-
-
-def well_paths(well: str):
-    cells = sorted((SEG / well).glob("cells_T*.tif"))
-    vessels = sorted((SEG / well).glob("vessels_T*.tif"))
-    if len(cells) != len(vessels) or not cells:
-        raise FileNotFoundError(f"incomplete segmentation for {well}")
-    return cells, vessels
 
 
 def cell_spacing(label_maps: list) -> float:
@@ -89,26 +73,6 @@ def symmetric_gate(label_maps: list, n_windows: int = 4, window: int = 3) -> dic
     spacing, p95 = float(np.median(spac)), float(np.median(steps))
     return dict(spacing_px=spacing, pilot_step_p95_px=p95, max_dist_px=max(1.5 * p95, 0.5 * spacing),
                 ambiguity_index=p95 / spacing)
-
-
-def vessels_from_composite(stack: np.ndarray, um_per_px: float, sigma: float = 1.0, sub: int = 5):
-    """Vessel masks (T, H, W) from the unmixed vessel channel of a published RGB
-    composite: Gaussian (sigma px), one Otsu threshold for the whole sequence
-    (every `sub`-th frame), then the ARTORG size rules in um^2 (objects below
-    211 um^2 removed, holes below 2112 um^2 filled). The composites are already
-    contrast-adjusted, so the Sato ridge filter used on the raw ARTORG red
-    channel would over-process them (it labels most of the background).
-    Returns (masks, threshold)."""
-    from scipy import ndimage as ndi
-    from skimage.filters import threshold_otsu
-    from skimage.morphology import remove_small_holes, remove_small_objects
-    scale = (UM_PER_PX / um_per_px) ** 2
-    sm = np.stack([ndi.gaussian_filter(x.astype(np.float32), sigma) for x in stack])
-    thr = float(threshold_otsu(sm[::sub]))
-    lo, hole = max(int(500 * scale), 5), int(5000 * scale)
-    V = np.stack([remove_small_holes(remove_small_objects(s > thr, max_size=lo - 1), max_size=hole - 1)
-                  for s in sm])
-    return V, thr
 
 
 # From trivial to established: no linking, greedy nearest neighbour, our

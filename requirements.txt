@@ -1,12 +1,13 @@
 numpy
 pandas
 scipy
-scikit-image
+scikit-image>=0.26
 statsmodels
 matplotlib
+networkx
 tifffile
-imageio
 btrack
 laptrack
 trackastra
+torch
 py-ctcmetrics==1.3.3

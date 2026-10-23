@@ -1,7 +1,7 @@
 """Vascular scaffold geometry used by the vessel-anchored tracker.
 
 A scaffold is the temporally consistent vessel network of one sequence (built
-by paper/code/vessel_scaffold.py): a union mask U, a pruned centreline
+by scaffold_from_stack): a union mask U, a pruned centreline
 (skeleton, labelled by segment), and optionally the deformation fields that map
 every frame onto the scaffold's reference frame. This module turns it into
 the quantities the tracker evaluates at any point:
@@ -26,7 +26,7 @@ NB8 = np.ones((3, 3), int)
 RING = [(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)]
 
 
-# ---------------------------------------------------------------- skeleton graph (moved from paper/code/vessel_scaffold.py)
+# ---------------------------------------------------------------- skeleton graph
 
 def crossing_number(skel):
     s = np.pad(skel.astype(np.int8), 1)
@@ -176,7 +176,7 @@ class Scaffold:
 
     @classmethod
     def load(cls, scaffold_dir: Path, radius: int = 6) -> "Scaffold":
-        """Load the outputs of paper/code/vessel_scaffold.py for one well."""
+        """Load a saved scaffold: union_mask.tif, segment_ids.tif and, if registered, flows_to_T1.npz."""
         d = Path(scaffold_dir)
         U = tifffile.imread(d / "union_mask.tif") > 0
         sk = tifffile.imread(d / "segment_ids.tif") > 0
@@ -202,7 +202,7 @@ class Scaffold:
 
     def to_reference(self, p: np.ndarray, t: int) -> np.ndarray:
         """Frame-t positions -> reference-frame positions (first-order inverse
-        of the registration flow; identity when the well was not registered)."""
+        of the registration flow; identity when the sequence was not registered)."""
         if self.flows is None or t == 0:
             return p
         f = self.flows[t].astype(np.float32)
@@ -251,11 +251,11 @@ def scaffold_from_stack(V: np.ndarray, vessel_img: np.ndarray, roi: np.ndarray |
                         smooth_sigma: float = 2.0, window: int = 2, radius: int = 6):
     """Scaffold of one sequence from its per-frame vessel masks V (T, H, W) and vessel channel (T, H, W).
 
-    Same steps as paper/code/vessel_scaffold.py: frames are registered to the
-    first one (TV-L1 optical flow on the vessel channel, downsampled by `ds`)
-    only if the cumulative deformation first -> last frame (95th percentile on
-    the first frame's centreline, drift removed) exceeds half the median
-    vessel radius; then temporal consensus, union, pruned centreline.
+    Frames are registered to the first one (TV-L1 optical flow on the vessel
+    channel, downsampled by `ds`) only if the cumulative deformation first ->
+    last frame (95th percentile on the first frame's centreline, drift
+    removed) exceeds half the median vessel radius; then temporal consensus,
+    union, pruned centreline.
     Returns (Scaffold, info dict).
     """
     from skimage.registration import optical_flow_tvl1

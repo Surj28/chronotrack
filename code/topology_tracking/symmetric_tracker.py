@@ -37,7 +37,7 @@ block update can only lower the energy, so the descent terminates. A link is
 feasible when its step is within the sequence's shared distance gate
 (common.symmetric_gate, the same for every tracker; times sqrt(m+1) across m
 missed frames); a gate on the self-calibrated motion scale tightened round
-after round on dense, mostly stationary data (Song S5). The start
+after round on dense, mostly stationary data. The start
 is the first-order solution (motion = marginal term only), in which frame
 pairs are independent and the solution is exactly time-symmetric. A final
 gap-closing step joins a track ending at t to a track starting at t+m+1 (m
@@ -50,14 +50,13 @@ cost measured per sequence from isolated cells that stay in place
 """
 from __future__ import annotations
 
-import json
 from dataclasses import asdict, dataclass
 
 import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
 
-from .vessel_tracker import CUES, NU, Z2_CAP, FrameDets, _rsd, solve_links
+from .vessel_tracker import CUES, NU, FrameDets, _rsd, solve_links
 
 
 
@@ -528,7 +527,8 @@ def run(frames: list[FrameDets], gate: dict, image_shape, cues=CUES, max_rounds:
             break
         new = calibrate(frames, tracks, Model(**{**asdict(m), "cues": tuple(cues)}), freeze_rates=rnd >= 2)
         change = float(np.max(np.abs(new.vector() - m.vector()) / np.maximum(np.abs(m.vector()), 1e-3)))
-        Ln = tracks.groupby("track_id").size()
+        fr = tracks.groupby("track_id").frame_idx
+        Ln = fr.max() - fr.min()                       # track length: frames from first to last detection
         history.append(dict(round=rnd, max_rel_change=change, n_tracks=len(Ln), mean_length=float(Ln.mean()),
                             sweeps=sweeps, **{k: v for k, v in asdict(new).items() if k != "cues"}))
         if verbose:

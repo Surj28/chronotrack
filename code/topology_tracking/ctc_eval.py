@@ -122,7 +122,7 @@ def stack_to_ctc_gt(out_dir: Path, gt_stack: np.ndarray, seg_frames: list[int] |
 
 
 # CHOTA (also in py-ctcmetrics, not a CTC measure) is left out: it does not
-# finish in reasonable time on the ARTORG crops.
+# finish in reasonable time on dense sequences.
 CTC_METRICS = ["Valid", "SEG", "DET", "TRA", "LNK", "CT", "TF", "BC", "CCA", "BIO",
                "OP_CSB", "OP_CTB", "OP_CLB", "HOTA", "IDF1", "MOTA"]
 

@@ -8,7 +8,7 @@ consecutive frames, two clusters are linked when they overlap by at least
     split          one cluster -> several clusters
     birth / death  a cluster with no link backward / forward
 Under time reversal merge <-> split and birth <-> death, so the chip event
-tests (run_event_tests.py) apply unchanged.
+tests (time reversal) apply unchanged.
 
 Features (one row per sequence): clusters per frame, median cluster area,
 growth rate (median log-area change per hour along continuations), merge,

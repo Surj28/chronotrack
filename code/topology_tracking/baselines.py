@@ -58,7 +58,7 @@ def _run_btrack(label_maps: list, max_dist: float, config_path: str | None) -> p
         # hypotheses at a fixed 40 px (theta_dist 20 px), which cuts true
         # links at long frame intervals. Division hypotheses (P_branch,
         # P_dead) are left out, as no compared tracker models division; with
-        # them the optimiser does not finish on dense ARTORG crops.
+        # them the optimiser does not finish on dense sequences.
         hm = tracker.hypothesis_model
         hm.dist_thresh = max_dist
         hm.theta_dist = max_dist / 2

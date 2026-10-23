@@ -1,10 +1,10 @@
-"""Figure and table: synthetic benchmark on the ARTORG twins (paper/code/synth_benchmark.py).
+"""Figure and table: benchmark on the synthetic sequences (code/synth_benchmark.py).
 
 Figure: our tracker against the published trackers (btrack, LapTrack,
 Trackastra), one panel per metric (link F1, complete tracks, feature
-error), labelled horizontal bars grouped by condition (density: real or 2x;
-motion: gentle = consensus steps, or steps scaled to the real well's linking
-ambiguity). Bars: median over the 12 sequences of a condition (4 wells x 3
+error), labelled horizontal bars grouped by condition (density: 1x or 2x;
+motion: gentle, or ambiguous: steps scaled up to a harder linking
+ambiguity). Bars: median over the 12 sequences of a condition (4 sequences x 3
 seeds). A bracket joins our bar to each published tracker's bar and carries
 the significance of their difference (paired Wilcoxon signed-rank test over
 those sequences, Holm-corrected over the 12 comparisons of a panel): ns, *,
@@ -15,9 +15,15 @@ Printed: every value and p-value, and the ablation (ours, +vessel,
 first-order, Kalman, nearest neighbor; Holm over its own 16 comparisons of a
 metric).
 
+Inputs: <results>/benchmark*.csv (synth_benchmark.py, with and without
+--published; --results, default results/). Output: images/benchmark.pdf/.png,
+and in figure_data/ benchmark_bars.csv, benchmark_sequences.csv and
+table_ablation.csv (the ablation's link F1, Supplementary Table S1).
+
 Usage (from the repo root):
-    python paper/figures/make_fig_benchmark.py
+    python figures/make_fig_benchmark.py [--results results]
 """
+import argparse
 from pathlib import Path
 
 import matplotlib
@@ -31,7 +37,7 @@ from statsmodels.stats.multitest import multipletests
 
 HERE = Path(__file__).resolve().parent
 PAPER = HERE.parent
-SYN = PAPER / "results" / "synthetic"
+RESULTS = PAPER / "results"
 OUT = PAPER / "images" / "benchmark"
 DATA = PAPER / "figure_data"                      # the plotted numbers, as CSV
 SHOWN = ["sym", "btrack", "laptrack", "trackastra"]
@@ -39,9 +45,9 @@ ABLATION = ["sym", "sym_vessel", "first_order", "w0", "nn"]
 NAMES = {"sym": "ChronoTrack", "btrack": "btrack", "laptrack": "LapTrack", "trackastra": "Trackastra",
          "sym_vessel": "+vessel", "first_order": "Frame-by-frame", "w0": "Kalman", "nn": "Nearest neighbor"}
 COLOURS = {"sym": "#0072B2", "btrack": "#E69F00", "laptrack": "#009E73", "trackastra": "#CC79A7"}
-CONDS = [(1.0, "1"), (1.0, "cal"), (2.0, "1"), (2.0, "cal")]
-COND_NAME = {(1.0, "1"): "Real density,\ngentle motion", (1.0, "cal"): "Real density,\nambiguous motion",
-             (2.0, "1"): "2× density,\ngentle motion", (2.0, "cal"): "2× density,\nambiguous motion"}
+CONDS = [(1, "gentle"), (1, "ambiguous"), (2, "gentle"), (2, "ambiguous")]
+COND_NAME = {(1, "gentle"): "Real density,\ngentle motion", (1, "ambiguous"): "Real density,\nambiguous motion",
+             (2, "gentle"): "2× density,\ngentle motion", (2, "ambiguous"): "2× density,\nambiguous motion"}
 METRICS = [("f1", "(a) Link accuracy", "Link F1 (%)", 100, True),
            ("complete", "(b) Complete tracks", "Cells tracked in one piece (%)", 100, True),
            ("feature_error", "(c) Feature error", "Error of the MVoC features (%)", 100, False)]
@@ -56,12 +62,12 @@ def stars(p):
 def compare(B):
     """Medians, n, and per family (published / ablation) Holm-corrected paired Wilcoxon tests.
     tests[(metric, cond, tracker)] = (p_holm, n, ours_better)."""
-    key = ["well", "rho", "lam", "seed"]
+    key = ["seq", "density", "motion", "seed"]
     val, n_of, tests = {}, {}, {}
     for metric, _, _, _, higher in METRICS:
         fam = {"published": [], "ablation": []}
         for cond in CONDS:
-            b = B[(B.rho == cond[0]) & (B.lam == cond[1])].pivot_table(index=key, columns="tracker", values=metric)
+            b = B[(B.density == cond[0]) & (B.motion == cond[1])].pivot_table(index=key, columns="tracker", values=metric)
             for tr in b.columns:
                 val[(metric, cond, tr)] = float(b[tr].median())
                 n_of[(metric, cond, tr)] = int(b[tr].notna().sum())
@@ -100,10 +106,20 @@ def bracket(ax, x, y0, y1, text, fontsize=5.3):
                 fontsize=fontsize, annotation_clip=False)
 
 
+def load_benchmark(results=RESULTS):
+    """Every benchmark CSV of synth_benchmark.py (ours and the published trackers), last run kept."""
+    files = sorted(Path(results).glob("benchmark*.csv"))
+    if not files:
+        raise SystemExit(f"no benchmark*.csv in {results}: run code/synth_benchmark.py first")
+    B = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+    B["motion"] = B.motion.astype(str)
+    return B.drop_duplicates(subset=["seq", "density", "motion", "seed", "tracker"], keep="last")
+
+
 def main():
-    B = pd.concat([pd.read_csv(f) for f in sorted(SYN.rglob("benchmark*.csv"))], ignore_index=True)
-    B = B.drop_duplicates(subset=["well", "rho", "lam", "seed", "tracker"], keep="last")
-    B["lam"] = B.lam.astype(str)
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--results", type=Path, default=RESULTS, help="folder with the benchmark CSVs (default: results/)")
+    B = load_benchmark(ap.parse_args().results)
     val, n_of, tests = compare(B)
     pd.set_option("display.width", 200)
     for metric, *_ in METRICS:
@@ -191,6 +207,7 @@ def main():
                 if t:
                     x = inv.transform((right + (GAP + j * STEP) * px, 0))[0]
                     bracket(ax, x, ys[(c, "sym")], ys[(c, tr)], stars(t[0]) or "ns")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png"):
         fig.savefig(OUT.with_suffix("." + ext), dpi=300, bbox_inches="tight", pad_inches=0.02)
     # the plotted numbers: bars (median, n, test vs ours) and the per-sequence values behind them
@@ -201,16 +218,19 @@ def main():
             for tr in ABLATION + [t for t in SHOWN if t != "sym"]:
                 if (metric, c, tr) in val:
                     t = tests.get((metric, c, tr))
-                    rows.append(dict(metric=metric, density=f"{c[0]:g}x", motion="gentle" if c[1] == "1" else "ambiguous",
+                    rows.append(dict(metric=metric, density=f"{c[0]:g}x", motion=c[1],
                                      tracker=NAMES[tr], in_figure=tr in shown, median=val[(metric, c, tr)],
                                      n_sequences=n_of[(metric, c, tr)], p_holm_vs_chronotrack=t[0] if t else np.nan,
                                      holm_family=("published" if tr in SHOWN else "ablation") if t else "",
                                      chronotrack_better=t[2] if t else np.nan))
-    pd.DataFrame(rows).to_csv(DATA / "benchmark_bars.csv", index=False)
-    seq = B[B.tracker.isin(ABLATION + SHOWN)][["well", "rho", "lam", "seed", "tracker"] + [m[0] for m in METRICS]]
-    seq.assign(tracker=seq.tracker.map(NAMES)).sort_values(["rho", "lam", "well", "seed", "tracker"]).to_csv(
+    bars = pd.DataFrame(rows)
+    bars.to_csv(DATA / "benchmark_bars.csv", index=False)
+    bars[(bars.metric == "f1") & bars.tracker.isin([NAMES[t] for t in ABLATION])].to_csv(
+        DATA / "table_ablation.csv", index=False)
+    seq = B[B.tracker.isin(ABLATION + SHOWN)][["seq", "density", "motion", "seed", "tracker"] + [m[0] for m in METRICS]]
+    seq.assign(tracker=seq.tracker.map(NAMES)).sort_values(["density", "motion", "seq", "seed", "tracker"]).to_csv(
         DATA / "benchmark_sequences.csv", index=False)
-    print("\n" + str(OUT.with_suffix(".pdf")), "|", DATA / "benchmark_bars.csv", "|", DATA / "benchmark_sequences.csv")
+    print("\n" + str(OUT.with_suffix(".pdf")), "|", DATA / "benchmark_bars.csv", "|", DATA / "benchmark_sequences.csv", "|", DATA / "table_ablation.csv")
 
 
 if __name__ == "__main__":
