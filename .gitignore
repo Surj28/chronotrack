@@ -1,0 +1,8 @@
+results/
+data/
+__pycache__/
+*.py[cod]
+.venv/
+*.tif
+*.mp4
+*.avi

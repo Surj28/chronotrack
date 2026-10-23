@@ -1,0 +1,21 @@
+metric,density,motion,tracker,in_figure,median,n_sequences,p_holm_vs_chronotrack,holm_family,chronotrack_better
+f1,1x,gentle,ChronoTrack,True,0.9753642969280024,12,,,
+f1,1x,gentle,+vessel,False,0.9750276095047884,12,0.0078125,ablation,True
+f1,1x,gentle,Frame-by-frame,False,0.9742300695226636,12,0.01953125,ablation,True
+f1,1x,gentle,Kalman,False,0.9573687425928264,12,0.0078125,ablation,True
+f1,1x,gentle,Nearest neighbor,False,0.9460180856352444,12,0.0078125,ablation,True
+f1,1x,ambiguous,ChronoTrack,True,0.9311826964016988,12,,,
+f1,1x,ambiguous,+vessel,False,0.9304927626837884,12,0.01220703125,ablation,True
+f1,1x,ambiguous,Frame-by-frame,False,0.9304068594926896,12,0.0078125,ablation,True
+f1,1x,ambiguous,Kalman,False,0.7157534027480328,12,0.0078125,ablation,True
+f1,1x,ambiguous,Nearest neighbor,False,0.8831514085456578,12,0.0078125,ablation,True
+f1,2x,gentle,ChronoTrack,True,0.9376561570557882,12,,,
+f1,2x,gentle,+vessel,False,0.938608715426293,12,0.04833984375,ablation,False
+f1,2x,gentle,Frame-by-frame,False,0.934967316553228,12,0.0078125,ablation,True
+f1,2x,gentle,Kalman,False,0.8536035237217154,12,0.0078125,ablation,True
+f1,2x,gentle,Nearest neighbor,False,0.9159210133040496,12,0.0078125,ablation,True
+f1,2x,ambiguous,ChronoTrack,True,0.8745831965566401,12,,,
+f1,2x,ambiguous,+vessel,False,0.8726089123702023,12,0.154296875,ablation,True
+f1,2x,ambiguous,Frame-by-frame,False,0.8707154059625166,12,0.2333984375,ablation,True
+f1,2x,ambiguous,Kalman,False,0.4775035125549749,12,0.0078125,ablation,True
+f1,2x,ambiguous,Nearest neighbor,False,0.8399546744651099,12,0.0078125,ablation,True

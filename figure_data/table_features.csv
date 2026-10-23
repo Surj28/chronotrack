@@ -1,0 +1,56 @@
+row,feature,model,column,n_sequences,mean,sd,significant
+Cells on vessels (\%),frac_overlapping,ARTORG,mean of 4 wells,4,81.30923197579153,4.7031988057013745,
+Cells on vessels (\%),frac_overlapping,Song,song2021_S1,1,11.33237979975795,,
+Cells on vessels (\%),frac_overlapping,Song,song2021_S3,1,9.87676056338028,,
+Cells on vessels (\%),frac_overlapping,Song,song2021_S5,1,25.09490375247757,,
+Cells on vessels (\%),frac_overlapping,Hachey,hachey2021_V1,1,1.14758861127251,,
+Track length (frames),track_length_frames,ARTORG,mean of 4 wells,4,13.744467865730595,0.7714633718939063,
+Track length (frames),track_length_frames,Song,song2021_S1,1,41.58403361344538,,
+Track length (frames),track_length_frames,Song,song2021_S3,1,30.94827586206896,,
+Track length (frames),track_length_frames,Song,song2021_S5,1,48.969521044992746,,
+Track length (frames),track_length_frames,Hachey,hachey2021_V1,1,55.82520325203252,,
+Speed on / off vessels (\textmu m/frame),speed_on_vessel_um_frame,ARTORG,mean of 4 wells,4,4.649136715680449,0.6161869394260555,False
+Speed on / off vessels (\textmu m/frame),speed_off_vessel_um_frame,ARTORG,mean of 4 wells,4,4.268570649863345,0.9743228403171829,False
+Speed on / off vessels (\textmu m/frame),speed_on_vessel_um_frame,Song,song2021_S1,1,7.572042226683291,,False
+Speed on / off vessels (\textmu m/frame),speed_off_vessel_um_frame,Song,song2021_S1,1,11.059525293094524,,False
+Speed on / off vessels (\textmu m/frame),speed_on_vessel_um_frame,Song,song2021_S3,1,4.878048780487805,,False
+Speed on / off vessels (\textmu m/frame),speed_off_vessel_um_frame,Song,song2021_S3,1,1.7246506858208472,,False
+Speed on / off vessels (\textmu m/frame),speed_on_vessel_um_frame,Song,song2021_S5,1,1.1577240847313852,,False
+Speed on / off vessels (\textmu m/frame),speed_off_vessel_um_frame,Song,song2021_S5,1,0.834764005770638,,False
+Speed on / off vessels (\textmu m/frame),speed_on_vessel_um_frame,Hachey,hachey2021_V1,1,2.979048260730496,,True
+Speed on / off vessels (\textmu m/frame),speed_off_vessel_um_frame,Hachey,hachey2021_V1,1,0.6977332871145309,,True
+Arrivals (per 100 detections),arrivals_per_100_detections,ARTORG,mean of 4 wells,4,4.590765071429776,1.3814874987094814,
+Arrivals (per 100 detections),arrivals_per_100_detections,Song,song2021_S1,1,2.3324898228628013,,
+Arrivals (per 100 detections),arrivals_per_100_detections,Song,song2021_S3,1,3.697183098591549,,
+Arrivals (per 100 detections),arrivals_per_100_detections,Song,song2021_S5,1,2.092921691806363,,
+Arrivals (per 100 detections),arrivals_per_100_detections,Hachey,hachey2021_V1,1,1.3654851830331203,,
+Arrivals on vessels (\%),arrival_on_vessel_frac,ARTORG,mean of 4 wells,4,77.6136548413312,4.110950475102748,False
+Arrivals on vessels (\%),frac_overlapping,ARTORG,mean of 4 wells,4,81.30923197579153,4.7031988057013745,False
+Arrivals on vessels (\%),arrival_on_vessel_frac,Song,song2021_S1,1,11.32075471698113,,False
+Arrivals on vessels (\%),frac_overlapping,Song,song2021_S1,1,11.33237979975795,,False
+Arrivals on vessels (\%),arrival_on_vessel_frac,Song,song2021_S3,1,21.904761904761898,,True
+Arrivals on vessels (\%),frac_overlapping,Song,song2021_S3,1,9.87676056338028,,True
+Arrivals on vessels (\%),arrival_on_vessel_frac,Song,song2021_S5,1,45.26484751203852,,True
+Arrivals on vessels (\%),frac_overlapping,Song,song2021_S5,1,25.09490375247757,,True
+Arrivals on vessels (\%),arrival_on_vessel_frac,Hachey,hachey2021_V1,1,2.6595744680851,,False
+Arrivals on vessels (\%),frac_overlapping,Hachey,hachey2021_V1,1,1.14758861127251,,False
+Arrivals at the edge (\%),arrival_edge_frac,ARTORG,mean of 4 wells,4,6.134111202140632,1.4710993579856266,True
+Arrivals at the edge (\%),edge_chance,ARTORG,mean of 4 wells,4,2.9174243857564153,0.1728977736137564,True
+Arrivals at the edge (\%),arrival_edge_frac,Song,song2021_S1,1,36.32075471698113,,True
+Arrivals at the edge (\%),edge_chance,Song,song2021_S1,1,5.97425459346462,,True
+Arrivals at the edge (\%),arrival_edge_frac,Song,song2021_S3,1,29.04761904761905,,False
+Arrivals at the edge (\%),edge_chance,Song,song2021_S3,1,20.19366197183098,,False
+Arrivals at the edge (\%),arrival_edge_frac,Song,song2021_S5,1,11.878009630818621,,True
+Arrivals at the edge (\%),edge_chance,Song,song2021_S5,1,3.66849195417744,,True
+Arrivals at the edge (\%),arrival_edge_frac,Hachey,hachey2021_V1,1,10.63829787234042,,False
+Arrivals at the edge (\%),edge_chance,Hachey,hachey2021_V1,1,8.17838466008134,,False
+Extravasation (per 100 detections),exits_per_100_detections,ARTORG,mean of 4 wells,4,1.1598656780054533,0.18011091375420027,
+Extravasation (per 100 detections),exits_per_100_detections,Song,song2021_S1,1,3.685774012542634,,
+Extravasation (per 100 detections),exits_per_100_detections,Song,song2021_S3,1,2.2359154929577465,,
+Extravasation (per 100 detections),exits_per_100_detections,Song,song2021_S5,1,2.482614976316055,,
+Extravasation (per 100 detections),exits_per_100_detections,Hachey,hachey2021_V1,1,0.23242300987797795,,
+Regressing vessels (\%),vessel_regression_frac,ARTORG,mean of 4 wells,4,4.3938086065889355,2.3399959873946594,
+Regressing vessels (\%),vessel_regression_frac,Song,song2021_S1,1,0.0,,
+Regressing vessels (\%),vessel_regression_frac,Song,song2021_S3,1,0.0,,
+Regressing vessels (\%),vessel_regression_frac,Song,song2021_S5,1,0.0,,
+Regressing vessels (\%),vessel_regression_frac,Hachey,hachey2021_V1,1,6.1338560304703,,

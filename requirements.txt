@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+scikit-image
+statsmodels
+matplotlib
+tifffile
+imageio
+btrack
+laptrack
+trackastra
+py-ctcmetrics==1.3.3
